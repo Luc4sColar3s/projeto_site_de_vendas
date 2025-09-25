@@ -2,11 +2,11 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ListaDeAnuncios from "../components/ListaDeAnuncios";
 
-export default function App() {
+export default function MeusAnuncios() {
   return (
     <div>
-      <Header titulo={"Ofertas para você"} />
-      <ListaDeAnuncios titulo={"Ofertas para você"} />
+      <Header titulo={"Meus anúncios"} />
+      <ListaDeAnuncios titulo={"Meus anúncios"}/>
       <Footer />
     </div>
   );

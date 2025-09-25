@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function ListaDeAnuncios() {
+export default function ListaDeAnuncios({ titulo }) {
   const [anunciosList, setAnunciosList] = useState([]);
   async function handleDataAnuncios() {
     try {
@@ -21,6 +21,8 @@ export default function ListaDeAnuncios() {
       console.error(error);
     }
   }
+
+  async function handleDataMyAnuncios(){}
   useEffect(() => {
     handleDataAnuncios();
   }, []);
@@ -28,7 +30,7 @@ export default function ListaDeAnuncios() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h1 className=" w-170 text-[24px] font-bold">Ofertas para você</h1>
+      <h1 className=" w-170 text-[24px] font-bold">{titulo}</h1>
       <ul>
         {anunciosList.map((item, index) => (
           <li key={index}>
