@@ -40,7 +40,7 @@ export default function Cadastro() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(userCadastro),
+          body: JSON.stringify(data),
         }
       );
       if (response.ok) {
@@ -61,11 +61,11 @@ export default function Cadastro() {
           <img src="https://floatui.com/logo-dark.svg" width={150} />
           <div className=" mt-16 space-y-3">
             <h3 className="text-white text-3xl font-bold">
-              Start growing your business quickly
+              Comece a expandir seu negócio rapidamente
             </h3>
             <p className="text-gray-300">
-              Create an account and get access to all features for 30-days, No
-              credit card required.
+              Crie uma conta e tenha acesso a todos os recursos por 30 dias. Não
+              é necessário cartão de crédito..
             </p>
             <div className="flex items-center -space-x-2 overflow-hidden">
               <img
@@ -89,7 +89,7 @@ export default function Cadastro() {
                 className="w-10 h-10 rounded-full border-2 border-white"
               />
               <p className="text-sm text-gray-400 font-medium translate-x-5">
-                Join 5.000+ users
+                Seja +1 desapegado.
               </p>
             </div>
           </div>
@@ -201,7 +201,7 @@ export default function Cadastro() {
               </select>
             </div>
             <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
-              Create account
+              Criar conta
             </button>
           </form>
         </div>
