@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { estadosBrasileiros } from "../utils/estados";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 export default function Cadastro() {
+  const [anunciosList, setAnuncioList] = useState([]);
   const [userCadastro, setUserCadastro] = useState([
     {
       nome: "",
@@ -54,11 +55,39 @@ export default function Cadastro() {
     }
   }
 
+  async function handleImgsProdutos() {
+    try {
+      const response = await fetch(
+        "https://dc-classificados.up.railway.app/api/anuncios/getAllAnuncios",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "aplication/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        setAnuncioList(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  useEffect(() => {
+    handleImgsProdutos();
+  }, []);
+
+  const List = anunciosList.slice(0, 5);
+
   return (
     <main className="w-full flex">
       <div className="relative flex-1 hidden items-center justify-center h-screen bg-gray-900 lg:flex">
         <div className="relative z-10 w-full max-w-md">
-          <img src="https://floatui.com/logo-dark.svg" width={150} />
+          <img
+            src="https://logodownload.org/wp-content/uploads/2016/10/olx-logo-13.png"
+            width={150}
+          />
           <div className=" mt-16 space-y-3">
             <h3 className="text-white text-3xl font-bold">
               Comece a expandir seu negócio rapidamente
@@ -68,28 +97,16 @@ export default function Cadastro() {
               é necessário cartão de crédito..
             </p>
             <div className="flex items-center -space-x-2 overflow-hidden">
-              <img
-                src="https://randomuser.me/api/portraits/women/79.jpg"
-                className="w-10 h-10 rounded-full border-2 border-white"
-              />
-              <img
-                src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg"
-                className="w-10 h-10 rounded-full border-2 border-white"
-              />
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=a72ca28288878f8404a795f39642a46f"
-                className="w-10 h-10 rounded-full border-2 border-white"
-              />
-              <img
-                src="https://randomuser.me/api/portraits/men/86.jpg"
-                className="w-10 h-10 rounded-full border-2 border-white"
-              />
-              <img
-                src="https://images.unsplash.com/photo-1510227272981-87123e259b17?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=3759e09a5b9fbe53088b23c615b6312e"
-                className="w-10 h-10 rounded-full border-2 border-white"
-              />
-              <p className="text-sm text-gray-400 font-medium translate-x-5">
-                Seja +1 desapegado.
+              {List.map((item, index) => (
+                <img
+                  key={index}
+                  src={item.imagem}
+                  className="w-10 h-10 rounded-full border-2 border-white"
+                />
+              ))}
+
+              <p className="text-sm font text-gray-400 font-medium translate-x-5">
+                <span className="text-lg font-bold">{anunciosList.length}</span> produtos para você!
               </p>
             </div>
           </div>

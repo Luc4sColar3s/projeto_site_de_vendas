@@ -1,7 +1,9 @@
-import { PlusCircleIcon } from "@phosphor-icons/react";
+import { CaretCircleRightIcon, PlusCircleIcon } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header({ titulo }) {
+  const navigate = useNavigate();
   const [state, setState] = useState(false);
 
   // Replace javascript:void(0) paths with your paths
@@ -99,21 +101,33 @@ export default function Header({ titulo }) {
                 Sair
               </a>
             ) : (
-              <a
-                href="javascript:void(0)"
+              <Link
+                to={"/login"}
                 className="block text-[#6E0AD6] hover:text-[#45028b]"
               >
                 Entrar
-              </a>
+              </Link>
             )}
-
-            <button
-              href="javascript:void(0)"
-              className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-[#6E0AD6] hover:bg-[#45028b] active:bg-[#2c0058] rounded-full md:inline-flex"
-            >
-              <PlusCircleIcon size={20} />
-              Criar novo anúncio
-            </button>
+            {titulo === "Ofertas para você" ? (
+              <button
+                onClick={() => {
+                  navigate("/cadastro");
+                }}
+                href="javascript:void(0)"
+                className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-[#6E0AD6] hover:bg-[#45028b] active:bg-[#2c0058] rounded-full md:inline-flex"
+              >
+                Criar conta
+                <CaretCircleRightIcon size={20} />
+              </button>
+            ) : (
+              <button
+                href="javascript:void(0)"
+                className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-[#6E0AD6] hover:bg-[#45028b] active:bg-[#2c0058] rounded-full md:inline-flex"
+              >
+                <PlusCircleIcon size={20} />
+                Criar novo anúncio
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -71,7 +71,7 @@ export default function ListaDeAnuncios({ titulo }) {
                     <div className=" w-100  h- flex justify-between flex-col">
                       <h1 className="text-[24px] font-bold">{item.titulo}</h1>
                       <hr className=" border-gray-200" />
-                      <p className="text-[18px] font-bold">{item.preco}</p>
+                      <p className="text-[18px] font-bold">R$: {item.preco}</p>
                       <hr className=" border-gray-200" />
                       <p className="text-[12px] text-gray-500">
                         {item.descricaoCurta}
